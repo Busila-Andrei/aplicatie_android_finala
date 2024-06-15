@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.aplicatie_android_finala.R;
+import com.example.aplicatie_android_finala.config.ApiResponse;
 import com.example.aplicatie_android_finala.config.ApiService;
 import com.example.aplicatie_android_finala.config.RetrofitClient;
 import com.example.aplicatie_android_finala.data.dto.TokenRequest;
@@ -97,9 +98,9 @@ public class SplashScreenFragment extends Fragment {
         statusMessage.setText(R.string.checking_server_connection);
         handler.postDelayed(() -> {
             if (isAdded()) {
-                apiService.checkServerConnection().enqueue(new Callback<>() {
+                apiService.checkServerConnection().enqueue(new Callback<ApiResponse>() {
                     @Override
-                    public void onResponse(@NonNull Call call, @NonNull Response response) {
+                    public void onResponse(@NonNull Call<ApiResponse> call, @NonNull Response<ApiResponse> response) {
                         if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
                             retryCount = 0;
                             checkToken();
@@ -115,7 +116,7 @@ public class SplashScreenFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<ApiResponse> call, @NonNull Throwable t) {
                         Log.e(TAG, "Server connection failed: " + t.getMessage());
                         statusMessage.setText(R.string.server_connection_failed);
                         if (retryCount < MAX_RETRY) {
@@ -152,9 +153,9 @@ public class SplashScreenFragment extends Fragment {
 
     private void verifyToken(String token) {
         TokenRequest tokenRequest = new TokenRequest(token);
-        apiService.verifyToken(tokenRequest).enqueue(new Callback<>() {
+        apiService.verifyToken(tokenRequest).enqueue(new Callback<ApiResponse>() {
             @Override
-            public void onResponse(Call call, Response response) {
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
                     tokenIsValid = true;
                 } else {
@@ -165,7 +166,7 @@ public class SplashScreenFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
                 Log.e(TAG, "Error during token verification: " + t.getMessage());
                 tokenIsValid = false;
                 listener.onSplashScreenComplete(tokenIsValid);
