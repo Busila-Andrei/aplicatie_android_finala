@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <!-- Butonul 1 -->
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_button"
+        android:text="Button 1"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Butonul 2 -->
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_button"
+        android:text="Button 2"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Butonul 3 -->
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_button"
+        android:text="Button 3"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Butonul 4 -->
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_button"
+        android:text="Button 4"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Butonul 5 -->
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_button"
+        android:text="Button 5"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Butonul 6 -->
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_button"
+        android:text="Button 6"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Butonul 7 -->
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_button"
+        android:text="Button 7"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Butonul 8 -->
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_button"
+        android:text="Button 8"
+        android:layout_marginBottom="16dp" />
+</LinearLayout>

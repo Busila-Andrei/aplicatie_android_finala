@@ -1,24 +1,81 @@
 package com.example.aplicatie_android_finala;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.aplicatie_android_finala.fragments.*;
+
+public class MainActivity extends AppCompatActivity implements
+        SplashScreenFragment.OnSplashScreenListener,
+        LoginFragment.OnLoginListener,
+        DecisionFragment.OnLoginSelectedListener,
+        DecisionFragment.OnRegisterSelectedListener,
+        RegisterFragment.OnRegisterListener,
+        ConfirmationFragment.OnConfirmationListener{
+
+    private final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        loadFragment(new SplashScreenFragment());
+    }
+
+    public void loadFragment(Fragment fragment) {
+        if (!isFinishing() && !isDestroyed()) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentFrame, fragment)
+                    .commitAllowingStateLoss();
+        } else {
+            Log.e(TAG, "Activity is finishing or destroyed, cannot load fragment.");
+        }
+    }
+
+    @Override
+    public void onSplashScreenComplete(boolean isSuccess) {
+        if (isSuccess) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            loadFragment(new DecisionFragment());
+        }
+    }
+
+    @Override
+    public void onLoginComplete() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onLoginSelected() {
+        loadFragment(new LoginFragment());
+    }
+
+    @Override
+    public void onRegisterSelected() {
+        loadFragment(new RegisterFragment());
+    }
+
+    @Override
+    public void onRegisterComplete(String req) {
+        loadFragment(new ConfirmationFragment(req));
+    }
+
+    @Override
+    public void onConfirmationComplete() {
+        loadFragment(new LoginFragment());
+    }
+
+    @Override
+    public void onBackToRegister() {
+        loadFragment(new RegisterFragment());
     }
 }

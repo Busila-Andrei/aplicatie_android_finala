@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="50dp"/>
+            <solid android:color="@android:color/transparent"/>
+            <stroke android:width="3dp" android:color="#D3D3D3"/> <!-- Margine ușor gri -->
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="50dp"/>
+                <solid android:color="#D3D3D3"/> <!-- Culoare de progres ușor gri -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>

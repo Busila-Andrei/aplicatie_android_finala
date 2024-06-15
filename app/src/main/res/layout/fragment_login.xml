@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:background="@color/background_color"
+	tools:context=".fragments.LoginFragment">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:padding="24dp"
+		android:orientation="vertical"
+		android:layout_margin="16dp">
+
+		<TextView
+			android:id="@+id/textViewError"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColor="@color/error_color"
+			android:textSize="14sp"
+			android:visibility="gone"
+			android:padding="8dp"
+			android:background="@drawable/error_background"
+			android:layout_marginBottom="16dp" />
+
+		<androidx.cardview.widget.CardView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			app:cardElevation="8dp"
+			app:cardCornerRadius="8dp">
+
+			<EditText
+				android:id="@+id/editTextEmail"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/email_hint"
+				android:inputType="textEmailAddress"
+				android:padding="16dp"
+				android:background="@android:color/transparent"/>
+		</androidx.cardview.widget.CardView>
+
+		<androidx.cardview.widget.CardView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			app:cardElevation="8dp"
+			app:cardCornerRadius="8dp">
+
+			<EditText
+				android:id="@+id/editTextPassword"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/password_hint"
+				android:inputType="textPassword"
+				android:padding="16dp"
+				android:background="@android:color/transparent"/>
+		</androidx.cardview.widget.CardView>
+
+		<Button
+			android:id="@+id/buttonLogin"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/login"
+			android:padding="16dp"
+			android:backgroundTint="@color/colorPrimary"
+			android:textColor="@android:color/white"
+			android:elevation="4dp"
+			android:layout_marginBottom="16dp" />
+
+		<TextView
+			android:id="@+id/textViewRegisterPrompt"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/register_prompt"
+			android:textColor="@android:color/holo_blue_light"
+			android:gravity="center"
+			android:textStyle="bold"
+			android:layout_marginTop="16dp"/>
+	</LinearLayout>
+</FrameLayout>

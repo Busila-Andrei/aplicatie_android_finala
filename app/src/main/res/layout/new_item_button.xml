@@ -1,0 +1,32 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:gravity="center">
+
+    <FrameLayout
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        android:background="@drawable/progress_bar_shadow">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/CustomCircularProgressBar"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        style="@style/CustomButtonStyle"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:text="Button"
+        android:layout_gravity="center" />
+</FrameLayout>

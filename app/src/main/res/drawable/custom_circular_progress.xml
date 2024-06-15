@@ -1,0 +1,22 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fundalul progresului (gol) -->
+    <item android:id="@android:id/background">
+        <shape android:shape="ring" android:useLevel="false">
+            <size android:width="10dp" android:height="10dp"/>
+            <solid android:color="#E0E0E0"/>
+        </shape>
+    </item>
+
+    <!-- Progresul propriu-zis -->
+    <item android:id="@android:id/progress">
+        <shape android:shape="ring" android:useLevel="true">
+            <size android:width="10dp" android:height="10dp"/>
+            <gradient
+                android:type="sweep"
+                android:useLevel="true"
+                android:startColor="#3F51B5"
+                android:endColor="#FF4081"
+                android:angle="0"/> <!-- Setează unghiul pentru a porni de sus -->
+        </shape>
+    </item>
+</layer-list>

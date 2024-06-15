@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".fragments.ConfirmationFragment">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:gravity="center"
+		android:padding="16dp">
+
+		<ImageButton
+			android:id="@+id/buttonClose"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_gravity="end"
+			android:background="?attr/selectableItemBackgroundBorderless"
+			android:src="@drawable/ic_close"
+			android:contentDescription="@string/close"/>
+
+		<TextView
+			android:id="@+id/textViewConfirmation"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/confirmation_message"
+			android:gravity="center"
+			android:layout_marginTop="16dp"/>
+
+		<TextView
+			android:id="@+id/textViewTimer"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="18sp"
+			android:gravity="center"
+			android:visibility="gone"
+			android:text="60"
+			android:layout_marginTop="16dp"/>
+
+		<Button
+			android:id="@+id/buttonResendEmail"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/resend_email"
+			android:layout_marginTop="16dp"/>
+	</LinearLayout>
+</FrameLayout>

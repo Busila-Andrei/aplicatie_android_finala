@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_color"
+    tools:context=".HomeActivity">
+
+    <!-- FrameLayout pentru conținut -->
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Bara de butoane în partea de jos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="5">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/button_1"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/buttonColor"
+            android:layout_margin="4dp"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/button_2"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/buttonColor"
+            android:layout_margin="4dp"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/button_3"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/buttonColor"
+            android:layout_margin="4dp"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/button_4"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/buttonColor"
+            android:layout_margin="4dp"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/button_5"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/buttonColor"
+            android:layout_margin="4dp"
+            android:textSize="14sp"/>
+    </LinearLayout>
+</LinearLayout>
