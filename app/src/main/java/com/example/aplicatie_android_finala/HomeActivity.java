@@ -1,14 +1,21 @@
 package com.example.aplicatie_android_finala;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
 import com.example.aplicatie_android_finala.config.ApiRepository;
+import com.example.aplicatie_android_finala.config.ApiResponse;
+import com.example.aplicatie_android_finala.config.ApiService;
+import com.example.aplicatie_android_finala.config.RetrofitClient;
 import com.example.aplicatie_android_finala.data.database.AppDatabase;
 import com.example.aplicatie_android_finala.data.database.Category;
 import com.example.aplicatie_android_finala.data.database.Progress;
@@ -16,6 +23,7 @@ import com.example.aplicatie_android_finala.data.database.Question;
 import com.example.aplicatie_android_finala.data.database.Subcategory;
 import com.example.aplicatie_android_finala.data.database.Word;
 import com.example.aplicatie_android_finala.data.database.WordDao;
+import com.example.aplicatie_android_finala.data.dto.TokenRequest;
 import com.example.aplicatie_android_finala.fragments.QuestionsFragment;
 import com.example.aplicatie_android_finala.fragments.SectionsFragment;
 import com.example.aplicatie_android_finala.fragments.WordsFragment;
@@ -23,6 +31,10 @@ import com.example.aplicatie_android_finala.fragments.WordsFragment;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
@@ -51,12 +63,16 @@ public class HomeActivity extends AppCompatActivity {
         Button btn3 = findViewById(R.id.button3);
         Button btn4 = findViewById(R.id.button4);
         Button btn5 = findViewById(R.id.button5);
+        TextView tvLogout = findViewById(R.id.tv_logout);
 
         // Listeneri pentru butoane
         btn1.setOnClickListener(v -> loadFragment(new SectionsFragment()));
         btn3.setOnClickListener(v -> loadFragment(new QuestionsFragment()));
         btn4.setOnClickListener(v -> loadFragment(new WordsFragment()));
         btn5.setOnClickListener(v -> fetchWordsFromApi());
+
+        // Listener pentru TextView Log Out
+        tvLogout.setOnClickListener(v -> logout());
 
         // Încarcă implicit primul fragment
         if (savedInstanceState == null) {
@@ -200,5 +216,44 @@ public class HomeActivity extends AppCompatActivity {
         if (sectionsFragment != null) {
             sectionsFragment.displayCategories();
         }
+    }
+
+    private void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        String token = sharedPreferences.getString("jwt_token", null);
+
+        if (token == null) {
+            Log.e(TAG, "Token not found in SharedPreferences.");
+            return;
+        }
+
+        ApiService apiService = RetrofitClient.getApiService();
+        TokenRequest tokenRequest = new TokenRequest(token);
+        Call<ApiResponse> call = apiService.logoutAccount(tokenRequest);
+
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "Logout successful.");
+                    // Clear the token from SharedPreferences
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove("jwt_token");
+                    editor.apply();
+                    // Redirect to MainActivity
+                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Log.e(TAG, "Logout failed with status code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Log.e(TAG, "onFailure: Failed to execute logout request", t);
+            }
+        });
     }
 }

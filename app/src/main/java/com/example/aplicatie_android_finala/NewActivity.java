@@ -190,6 +190,7 @@ public class NewActivity extends FragmentActivity {
             givenAnswer = firstFragment.getAnswer();
             if (givenAnswer == null || givenAnswer.trim().isEmpty()) {
                 resultTextView.setText("Scrieți răspuns");
+                resultTextView.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
                 resultTextView.setVisibility(View.VISIBLE);
                 return;
             }
@@ -198,6 +199,7 @@ public class NewActivity extends FragmentActivity {
             givenAnswer = secondFragment.getSelectedOption();
             if (givenAnswer == null || givenAnswer.trim().isEmpty()) {
                 resultTextView.setText("Selectați răspunsul");
+                resultTextView.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
                 resultTextView.setVisibility(View.VISIBLE);
                 return;
             }
@@ -207,8 +209,9 @@ public class NewActivity extends FragmentActivity {
 
         Log.d(TAG, "checkAnswer: Given answer: " + givenAnswer + ", Correct answer: " + correctAnswer + ", Is correct: " + isCorrect);
 
-        // Display the result in the TextView
+        // Set the text and color of the resultTextView
         resultTextView.setText(isCorrect ? "Correct" : "Wrong");
+        resultTextView.setTextColor(isCorrect ? getResources().getColor(android.R.color.holo_green_dark) : getResources().getColor(android.R.color.holo_red_dark));
         resultTextView.setVisibility(View.VISIBLE);
 
         // If the answer is wrong, add the question to the wrongQuestions list
@@ -222,6 +225,7 @@ public class NewActivity extends FragmentActivity {
         isAnswerChecked = true;
         isLastAnswerCorrect = isCorrect;
     }
+
 
     private void continueToNextStep() {
         Log.d(TAG, "continueToNextStep: Continuing to next step");

@@ -10,6 +10,18 @@
 	android:background="@color/background_color"
 	tools:context=".fragments.RegisterFragment">
 
+	<TextView
+		android:id="@+id/textViewMessage"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textColor="@color/error_color"
+		android:textSize="14sp"
+		android:visibility="gone"
+		android:padding="8dp"
+		android:background="@drawable/error_background"
+		android:layout_marginBottom="16dp" />
+
+
 	<androidx.cardview.widget.CardView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -111,11 +123,4 @@
 		android:gravity="center"
 		android:textStyle="bold"
 		android:layout_marginTop="16dp"/>
-
-	<TextView
-		android:id="@+id/textViewMessage"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textColor="@color/design_default_color_error"
-		android:visibility="gone"/>
 </LinearLayout>

@@ -31,7 +31,7 @@ public interface ApiService {
     Call<ApiResponse> verifyToken(@Body TokenRequest tokenRequest);
 
     @POST("api/v1/auth/logout-account")
-    Call<ApiResponse> logoutAccount(@Body String tokenJson);
+    Call<ApiResponse> logoutAccount(@Body TokenRequest tokenJson);
 
     @GET("/api/v1/auth/words")
     Call<ApiResponse> getWords();
